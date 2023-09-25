@@ -1,8 +1,15 @@
 <?php
 
-use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BankAccountsController;
+use App\Http\Controllers\BenefitsController;
+use App\Http\Controllers\ConsultanciesController;
+use App\Http\Controllers\CreditsController;
+use App\Http\Controllers\LifeInsurancesController;
+use App\Http\Controllers\OfficesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +22,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
-Route::get('users', [UsersController::class, 'index']);
-Route::post('users', [UsersController::class, 'store']);
+Route::apiResource('/users', UsersController::class);
+Route::apiResource('/bank-accounts', BankAccountsController::class);
+Route::apiResource('/benefits', BenefitsController::class);
+Route::apiResource('/consultancies', ConsultanciesController::class);
+Route::apiResource('/credits', CreditsController::class);
+Route::apiResource('/life-insurances', LifeInsurancesController::class);
+Route::apiResource('/offices', OfficesController::class);
+
+
