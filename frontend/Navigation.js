@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 // Importamos los componentes que vamos a usar para las pestañas
 import About from './src/About/About';
@@ -13,10 +14,36 @@ const Tab = createBottomTabNavigator();
 // Creamos el componente que va a contener la navegación de pestañas
 function Tabs() {
     return (
-        <Tab.Navigator>
-            <Tab.Screen name="About" component={About} />
-            <Tab.Screen name="Login" component={Login} />
-            <Tab.Screen name="Crear nuevo usuario" component={CreateNewUsers} style={styles.nuevoUsuario} />
+        <Tab.Navigator
+            initialRouteName="Iniciar sesión"
+            tabBarOptions={{
+                activeTintColor: '#e91e63',
+            }}
+        >
+            <Tab.Screen name="Iniciar sesión" component={Login}
+                options={{
+                    tabBarLabel: 'Iniciar sesión',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="login" color={color} size={size} />
+                    ),
+                }}
+            />
+            <Tab.Screen name="Crear nuevo usuario" component={CreateNewUsers} style={styles.nuevoUsuario}
+                options={{
+                    tabBarLabel: 'Crear nuevo usuario',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="account-plus" color={color} size={size} />
+                    ),
+                }}
+            />
+            <Tab.Screen name="Sobre nosotros" component={About}
+                options={{
+                    tabBarLabel: 'Sobre nosotros',
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="information" color={color} size={size} />
+                    ),
+                }}
+            />
         </Tab.Navigator>
     );
 }

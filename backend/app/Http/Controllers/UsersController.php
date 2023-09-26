@@ -44,7 +44,7 @@ class UsersController extends Controller
         $user -> address = $request -> address;
         $user -> phone_number = $request -> phone_number;
         $user -> email = $request -> email;
-        $user -> password = $request -> password;
+        $user -> password = bcrypt($request -> password);
         $user -> save();
         return json_encode($user);
     }
