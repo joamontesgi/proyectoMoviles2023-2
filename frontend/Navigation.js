@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -28,6 +28,7 @@ function Tabs() {
                     ),
                 }}
             />
+
             <Tab.Screen name="Crear nuevo usuario" component={CreateNewUsers} style={styles.nuevoUsuario}
                 options={{
                     tabBarLabel: 'Crear nuevo usuario',

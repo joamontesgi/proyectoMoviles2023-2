@@ -2,13 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\BankAccountsController;
-use App\Http\Controllers\BenefitsController;
-use App\Http\Controllers\ConsultanciesController;
-use App\Http\Controllers\CreditsController;
-use App\Http\Controllers\LifeInsurancesController;
-use App\Http\Controllers\OfficesController;
+use App\Http\Controllers\API\UsersController;
+use App\Http\Controllers\API\BankAccountsController;
+use App\Http\Controllers\API\BenefitsController;
+use App\Http\Controllers\API\ConsultanciesController;
+use App\Http\Controllers\API\CreditsController;
+use App\Http\Controllers\API\LifeInsurancesController;
+use App\Http\Controllers\API\OfficesController;
 
 
 /*

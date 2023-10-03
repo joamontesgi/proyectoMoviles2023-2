@@ -17,9 +17,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name');
-            $table->string('document_type');
-            $table->string('document_number')->unique();
-            $table->string('address');
+            $table->string('document_type')->nullable();
+            $table->string('document_number')->unique()->nullable();
+            $table->string('address')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
