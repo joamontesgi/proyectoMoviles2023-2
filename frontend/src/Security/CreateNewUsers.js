@@ -39,7 +39,6 @@ export default function CreateNewUsers() {
           {
             text: 'OK',
             onPress: () => {
-              // Limpia los campos de entrada después del registro exitoso
               setFormData({
                 document_type: '',
                 document_number: '',

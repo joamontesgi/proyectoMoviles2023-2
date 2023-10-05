@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
 
 class UsersController extends Controller
 {
@@ -14,8 +15,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view("users.index", ["users" => $users]);
+        $users = User::where('visible', true)->get();
+        $roles = Role::all();
+        return view("users.index", ["users" => $users, "roles" => $roles]);
     }
 
     /**
@@ -41,6 +43,7 @@ class UsersController extends Controller
         $user -> last_name = $request -> last_name;
         $user -> phone_number = $request -> phone_number;
         $user -> email = $request -> email;
+        $user -> role_id = $request -> role_id;
         $user -> password = bcrypt($request -> password);
         $user -> save();
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');;
@@ -65,7 +68,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view("users.edit", ["user" => $user]);
     }
 
     /**
@@ -77,7 +81,14 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user -> name = $request -> name;
+        $user -> last_name = $request -> last_name;
+        $user -> phone_number = $request -> phone_number;
+        $user -> email = $request -> email;
+        $user -> password = bcrypt($request -> password);
+        $user -> save();
+        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente!');;
     }
 
     /**
@@ -88,6 +99,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user -> visible = false;
+        $user -> save();
+        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente!');;
+
     }
 }
