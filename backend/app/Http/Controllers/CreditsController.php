@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Credit;
 
-class UsersController extends Controller
+class CreditsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return json_encode($users);
+        $credits = Credit::all();
+        return response()->json([
+            'success' => true,
+            'message' => 'Listado de créditos',
+            'data' => $credits
+        ], 200);
     }
 
     /**
@@ -36,17 +40,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user -> name = $request -> name;
-        $user -> last_name = $request -> last_name;
-        $user -> document_type = $request -> document_type;
-        $user -> document_number = $request -> document_number;
-        $user -> address = $request -> address;
-        $user -> phone_number = $request -> phone_number;
-        $user -> email = $request -> email;
-        $user -> password = bcrypt($request -> password);
-        $user -> save();
-        return json_encode($user);
+        //
     }
 
     /**
@@ -93,4 +87,5 @@ class UsersController extends Controller
     {
         //
     }
+
 }

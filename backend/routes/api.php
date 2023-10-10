@@ -2,13 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\UsersController;
-use App\Http\Controllers\API\BankAccountsController;
-use App\Http\Controllers\API\BenefitsController;
-use App\Http\Controllers\API\ConsultanciesController;
-use App\Http\Controllers\API\CreditsController;
-use App\Http\Controllers\API\LifeInsurancesController;
-use App\Http\Controllers\API\OfficesController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BankAccountsController;
+use App\Http\Controllers\BenefitsController;
+use App\Http\Controllers\ConsultanciesController;
+use App\Http\Controllers\CreditsController;
+use App\Http\Controllers\LifeInsurancesController;
+use App\Http\Controllers\OfficesController;
+use App\Http\Controllers\SecurityAuthController;
 
 
 /*
@@ -23,12 +24,14 @@ use App\Http\Controllers\API\OfficesController;
 */
 
 
-Route::apiResource('/users', UsersController::class);
-Route::apiResource('/bank-accounts', BankAccountsController::class);
-Route::apiResource('/benefits', BenefitsController::class);
-Route::apiResource('/consultancies', ConsultanciesController::class);
-Route::apiResource('/credits', CreditsController::class);
-Route::apiResource('/life-insurances', LifeInsurancesController::class);
-Route::apiResource('/offices', OfficesController::class);
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::apiResource('/bank-accounts', BankAccountsController::class);
+    Route::apiResource('/benefits', BenefitsController::class);
+    Route::apiResource('/consultancies', ConsultanciesController::class);
+    Route::apiResource('/credits', CreditsController::class);
+    Route::apiResource('/life-insurances', LifeInsurancesController::class);
+    Route::apiResource('/offices', OfficesController::class);
+    Route::post('/logout', [SecurityAuthController::class, 'logout']);
+});
 
-
+Route::post('login', [SecurityAuthController::class, 'login'])->name('login');
