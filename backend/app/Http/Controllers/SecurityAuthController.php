@@ -19,7 +19,7 @@ class SecurityAuthController extends Controller
 
         // Credenciales para autenticar al usuario
         $credentials = request(['email', 'password']);
-        
+
         // Verificamos las credenciales del usuario
         if (!Auth::attempt($credentials)) {
             // Retornamos un mensaje de error

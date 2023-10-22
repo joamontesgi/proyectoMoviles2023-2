@@ -23,6 +23,7 @@ use App\Http\Controllers\SecurityAuthController;
 |
 */
 
+Route::apiResource('/users', UsersController::class);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/bank-accounts', BankAccountsController::class);

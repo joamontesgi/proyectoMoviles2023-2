@@ -41,13 +41,15 @@ class UsersController extends Controller
         $user = new User();
         $user -> name = $request -> name;
         $user -> last_name = $request -> last_name;
+        $user -> document_number = $request -> document_number;
         $user -> phone_number = $request -> phone_number;
         $user -> email = $request -> email;
-        $user -> role_id = $request -> role_id;
+        $user -> address = $request -> address;
+        $user -> role_id = 2;
         $user -> password = bcrypt($request -> password);
         $user -> save();
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');;
-    }
+        return json_encode(["success" => true, "message" => "Usuario creado exitosamente!"]);
+        }
 
     /**
      * Display the specified resource.
